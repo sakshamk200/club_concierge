@@ -1,0 +1,5 @@
+-- =============================================================================
+-- Club & Event Concierge — Local development seed
+-- Applied by `supabase db reset` after migrations (config.toml: db.seed.sql_paths).
+-- Intentionally empty for now; Stage 01 ingestion populates events at runtime.
+-- =============================================================================
