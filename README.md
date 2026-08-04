@@ -72,10 +72,24 @@ Groq · Google Gemini · Apify · PBKDF2 auth + Google Identity Services.
 ### Backend — port 8000
 ```bash
 cd backend
+
+# 1. Create & activate a virtual environment
 python -m venv .venv
-.venv/Scripts/python -m pip install -e ".[ai]"
-.venv/Scripts/python scripts/apply_migrations.py   # idempotent schema
-.venv/Scripts/python -m uvicorn app.main:app --reload --port 8000
+# Windows:
+.venv\Scripts\activate
+# macOS / Linux:
+# source .venv/bin/activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Configure secrets
+copy .env.example .env        # Windows  (macOS/Linux: cp .env.example .env)
+#   → open .env and fill in DATABASE_URL, GROQ_API_KEY, GEMINI_API_KEY, APIFY_API_TOKEN
+
+# 4. Apply the database schema (idempotent) and run the API
+python scripts/apply_migrations.py
+python -m uvicorn app.main:app --reload --port 8000
 ```
 Load real events (scrape → dedup → embed → store), then browse the docs:
 ```bash
@@ -86,8 +100,8 @@ API docs → <http://127.0.0.1:8000/docs>
 ### Frontend — port 3000
 ```bash
 cd frontend
-cp .env.local.example .env.local
-npm install
+copy .env.local.example .env.local    # Windows  (macOS/Linux: cp .env.local.example .env.local)
+npm install                           # installs all Node dependencies from package.json
 npm run dev
 ```
 Open <http://localhost:3000> and log in with the demo account above.

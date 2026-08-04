@@ -1,0 +1,26 @@
+# Club & Event Concierge — backend dependencies (Python 3.11+)
+# Install with:  pip install -r requirements.txt
+# Pinned to the versions verified for this project.
+
+# --- Web framework & server ---
+fastapi==0.138.0
+uvicorn[standard]==0.49.0
+
+# --- HTTP client (all outbound calls: Groq, Gemini, Apify, sources) ---
+httpx==0.28.1
+
+# --- Database: async Postgres + pgvector ---
+asyncpg==0.31.0
+pgvector==0.4.2
+
+# --- Config & validation ---
+pydantic==2.13.4
+pydantic-settings==2.14.2
+python-dotenv==1.2.2
+
+# --- Background ingestion scheduler ---
+APScheduler==3.11.2
+
+# --- Testing (optional; needed only to run `pytest`) ---
+pytest==9.1.1
+pytest-asyncio==1.4.0
