@@ -106,6 +106,21 @@ npm run dev
 ```
 Open <http://localhost:3000> and log in with the demo account above.
 
+> **Grading a supplied submission?** The provided `backend/.env` already contains working
+> credentials, so you can skip the "Configure secrets" step and go straight to
+> install → migrate → run. Install with `pip install -r requirements.txt` (not the older
+> `pip install -e ".[ai]"`) — `requirements.txt` is the complete, tested dependency list.
+
+### 🩺 Troubleshooting
+
+- **`pip install -r requirements.txt` → "No such file or directory":** run it from inside the
+  `backend/` folder, and make sure you have the latest code (`git pull`).
+- **`ConnectionRefusedError [WinError 1225]` / "database not available":** the hosted database
+  (Supabase, free tier) may have **auto-paused** after inactivity — restore it from the Supabase
+  dashboard and retry. If it persists, your network may be blocking the outbound Postgres port
+  (**5432**), which is common on campus/corporate Wi-Fi — try a different network or a phone
+  hotspot. `apply_migrations.py` is idempotent, so it is always safe to re-run.
+
 ---
 
 ## ⚙️ Configuration
